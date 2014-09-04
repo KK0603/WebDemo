@@ -1,0 +1,58 @@
+.view .mask{
+	-webkit-transform: translateX(-410px);
+	-moz-transform: translateX(-410px);
+	-o-transform: translateX(-410px);
+	-ms-transform: translateX(-410px);
+	transform: translateX(-410px);
+	background-color: white;
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	-ms-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+}
+.view:hover .mask{
+	-webkit-transform: translateX(0px);
+	-moz-transform: translateX(0px);
+	-o-transform: translateX(0px);
+	-ms-transform: translateX(0px);
+	transform: translateX(0px);
+}
+
+.view p{
+	color: gray;
+}
+
+.view h2{
+	background-color: transparent;
+	color: black;
+	border-bottom: solid 1px gray;
+	margin: 30px 10% 0px;
+}
+
+.view a.btn{
+	box-shadow: 1px 1px 2px 0 black;
+}
+
+
+
+.view img{
+	-webkit-transform: translateX(0px);
+	-moz-transform: translateX(0px);
+	-o-transform: translateX(0px);
+	-ms-transform: translateX(0px);
+	transform: translateX(0px);
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	-ms-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+}
+
+.view:hover img{
+	-webkit-transform: translateX(410px);
+	-moz-transform: translateX(410px);
+	-o-transform: translateX(410px);
+	-ms-transform: translateX(410px);
+	transform: translateX(410px);
+}
