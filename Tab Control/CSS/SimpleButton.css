@@ -1,0 +1,106 @@
+/*tab1*/
+.tab1 nav{
+	background-color: #ddd;
+}
+
+.tab1 nav ul li{
+	background-color: #fff;
+	height: 56px;
+}
+
+.tab1 nav ul li a.active{
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	-ms-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+	background-color: rgb(0, 128, 255);
+	color: white;
+}
+
+.tab1 li a:hover{
+	color: rgb(0, 128, 255);
+}
+
+.tab1 nav ul li a{
+	line-height: 56px;
+	text-align: left;
+}
+
+.tab1 nav ul li a span{
+	margin: 0px 30px;
+	float: left;
+}
+
+/*tab2*/
+.tab2 nav{
+	background-color: #dddddd;
+	height: 120px;
+
+}
+
+.tab2 nav ul li{
+	display: block;
+	float: left;
+	height: 120px;
+	margin: 0;
+}
+
+.tab2 nav ul li a.active{
+	background-color: #fff;
+	color: #666;
+}
+
+.tab2 li a:hover{
+	color: #666;
+}
+
+.tab2 nav ul li a{
+	text-align: center;
+	height: 80px;
+	padding: 20px 0;
+	width: 100%;
+	color: rgb(0, 128, 255);
+}
+
+.tab2 nav ul li a:after{
+	content: '';
+	display: block;
+	top:-80%;
+    height: 80px;
+    position: relative;
+    width: 1px;
+    background-color: #ccc;
+    float: right;
+}
+
+.tab2 nav ul li:nth-child(1) a:before{
+	content: '';
+	display: block;
+    height: 80px;
+    position: relative;
+    width: 1px;
+    background-color: #ccc;
+    float: left;
+}
+
+.tab2 nav ul li a.active:after{
+	content: '';
+	display: block;
+	top: 25%;
+	left: 45%;
+    height: 20px;
+    position: relative;
+    width: 20px;
+    background-color: #fff;
+    float: left;
+    -webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+.tab2 nav ul li a span{
+	margin: 15px 30px 0px;
+}

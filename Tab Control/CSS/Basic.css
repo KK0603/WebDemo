@@ -1,0 +1,86 @@
+@font-face {
+	font-weight: normal;
+	font-style: normal;
+	font-family: 'stroke7pixeden';
+	src:url('../Fonts/stroke7pixeden/stroke7pixeden.eot?u58ytb');
+	src:url('../Fonts/stroke7pixeden/stroke7pixeden.eot?#iefixu58ytb') format('embedded-opentype'),
+		url('../Fonts/stroke7pixeden/stroke7pixeden.woff?u58ytb') format('woff'),
+		url('../Fonts/stroke7pixeden/stroke7pixeden.ttf?u58ytb') format('truetype'),
+		url('../Fonts/stroke7pixeden/stroke7pixeden.svg?u58ytb#stroke7pixeden') format('svg');
+}
+
+body{
+	background-color: #E6ECEE;
+	font-family: Georgia, serif;
+}
+
+h1{
+	color: #444;
+	font-size: 4em;
+	padding: 50px 20px 20px;
+	margin: 0 10% 50px;
+	border-bottom: solid 2px #ccc;
+}
+
+nav ul{
+	list-style-type: none;
+	font-size: 1.2em;
+	padding: 0 10%;
+	margin: 0;
+}
+
+nav ul li{
+	display: inline-block;
+	width: 18.6%;
+	margin: 1% 0.5%;
+}
+
+nav ul li a{
+	display: block;
+	text-decoration: none;
+	color: #666;
+	text-align: center;
+}
+
+nav ul li a span{
+	display: block;
+	font-family: 'stroke7pixeden';
+	font-size: 1.5em;
+}
+
+.tab-icon1:after{
+	content: "\e648";
+}
+.tab-icon2:after{
+	content: "\e6a4";
+}
+.tab-icon3:after{
+	content: "\e666";
+}
+.tab-icon4:after{
+	content: "\e674";
+}
+.tab-icon5:after{
+	content: "\e60a";
+}
+
+section div{
+	height: 400px;
+	line-height: 400px;
+}
+
+section div p{
+	font-size: 4em;
+	text-align: center;
+	color: #aaa;
+	margin: 0;
+}
+
+div.hidden{
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+	display: none;
+}
