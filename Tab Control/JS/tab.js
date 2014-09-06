@@ -67,9 +67,9 @@
 				var aparent2 = alla[j].parentNode.parentNode.parentNode.parentNode;
 
 				if (alla[j].dataset.tabIndex == a.dataset.tabIndex) {
-					alla[j].classList.add("active");
+					alla[j].parentNode.classList.add("active");
 				} else {
-					alla[j].classList.remove("active");
+					alla[j].parentNode.classList.remove("active");
 				}
 
 			}

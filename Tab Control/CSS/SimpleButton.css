@@ -6,9 +6,11 @@
 .tab1 nav ul li{
 	background-color: #fff;
 	height: 56px;
+	margin: 0.5% 0.25%;
+	width: 19.5%;
 }
 
-.tab1 nav ul li a.active{
+.tab1 nav ul li.active a{
 	-webkit-transition: all 0.2s ease-in-out;
 	-moz-transition: all 0.2s ease-in-out;
 	-o-transition: all 0.2s ease-in-out;
@@ -36,17 +38,18 @@
 .tab2 nav{
 	background-color: #dddddd;
 	height: 120px;
+}
 
+.tab2 nav ul{
+	overflow: visible;
 }
 
 .tab2 nav ul li{
-	display: block;
-	float: left;
 	height: 120px;
 	margin: 0;
 }
 
-.tab2 nav ul li a.active{
+.tab2 nav ul li.active a{
 	background-color: #fff;
 	color: #666;
 }
@@ -84,7 +87,7 @@
     float: left;
 }
 
-.tab2 nav ul li a.active:after{
+.tab2 nav ul li.active a:after{
 	content: '';
 	display: block;
 	top: 25%;
@@ -103,4 +106,99 @@
 
 .tab2 nav ul li a span{
 	margin: 15px 30px 0px;
+}
+
+/*tab3*/
+.tab3 nav{
+	background-color: #E6ECEE;
+	overflow: hidden;
+}
+
+.tab3 nav ul li{
+	border-bottom: solid 1px #aaa;
+	margin: 0;
+}
+
+.tab3 nav ul li.active a{
+	color: rgb(0, 128, 255);
+	padding: 20px 0 0 0;
+}
+
+.tab3 li a:hover{
+	color: rgb(0, 128, 255);
+}
+
+.tab3 nav ul li a{
+	padding: 20px 0 22px;
+	color: #666;
+}
+
+
+.tab3 nav ul li.active a:after{
+	content: '';
+	display: block;
+	top: 15px;
+	left: 45%;
+    height: 20px;
+    position: relative;
+    width: 20px;
+    background-color: #E6ECEE;
+    border: solid 1px #aaa;
+    -webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+.tab3 nav ul li a span{
+	display: none;
+}
+
+/*tab4*/
+.tab4 nav ul li{
+	background-color: #dddddd;
+	border: solid 1px #cccccc;
+	border-left: 0;
+	margin: 0;
+	width: 19.7%
+}
+
+.tab4 nav ul li:nth-child(1){
+	border-left: solid 1px #cccccc;
+}
+
+.tab4 nav ul li.active{
+	border-bottom: 0;
+	background-color: transparent;
+}
+
+.tab4 nav ul li.active a{
+	color: rgb(0, 128, 255);
+}
+
+.tab4 li a:hover{
+	color: rgb(0, 128, 255);
+}
+
+.tab4 nav ul li a{
+	padding: 60px 0 0;
+}
+
+.tab4 nav ul li.active:before{
+	content: '';
+	display: block;
+    height: 4px;
+    position: relative;
+    width: 100%;
+    background-color: rgb(0, 128, 255);
+    border: solid 1px rgb(0, 128, 255);
+    border-right: 0;
+    float: left;
+}
+
+.tab4 nav ul li a span{
+	position: relative;
+	display: block;
+	top:-60px;
 }

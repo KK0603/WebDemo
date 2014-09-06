@@ -23,6 +23,7 @@ h1{
 }
 
 nav ul{
+	overflow: hidden;
 	list-style-type: none;
 	font-size: 1.2em;
 	padding: 0 10%;
@@ -30,9 +31,9 @@ nav ul{
 }
 
 nav ul li{
-	display: inline-block;
-	width: 18.6%;
-	margin: 1% 0.5%;
+	display: block;
+	float: left;
+	width: 20%;
 }
 
 nav ul li a{
