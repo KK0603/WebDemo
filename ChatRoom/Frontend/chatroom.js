@@ -24,5 +24,5 @@ function sendMessage(message){}
 	2.用户头像设置
 	3.查看用户信息
 	4.历史消息
-	5.刷新问题
+	5.刷新问题或者使用sessionStorage解决
 */
