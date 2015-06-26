@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+     <head>
+          <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+          <title>AjaxTest</title>
+          <style type="text/css">
+          	p{
+          		margin: 100px;
+          	}
+          	.tooltip-trigger{
+          		text-decoration: underline;
+          		color: blue;
+          		cursor: help;
+          		position: relative;
+          	}
+          	.tooltip-trigger:hover::after{
+				content: attr(data-tooltip);
+				width: 100px;
+				background-color: lightyellow;
+				padding: 10px;
+				border-radius: 5px;
+				position: absolute;
+				display: block;
+				border: 1px solid #ddd;
+				top:1rem;
+				left: 0;
+				z-index: 100;
+          	}
+          </style>
+     </head>
+     <body>
+     	<p>这是第一个需要<span class="tooltip-trigger" data-tooltip="第一个需要解释的词">解释的词</span></p>
+     	<p>这是第二个需要<span class="tooltip-trigger" data-tooltip="第二个需要解释的词">解释的词</span></p>
+     	<p>这是第三个需要<span class="tooltip-trigger" data-tooltip="第三个需要解释的词">解释的词</span></p>
+     </body>
+</html>
