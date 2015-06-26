@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+     <head>
+          <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+          <title>Box-Shadow Test</title>
+          <style type="text/css">
+          .div{
+          	height: 600px;
+          	width: 400px;
+          	margin:0px 20px;
+          	background-color: #ddd;
+          	float: left;
+          }
+          .div1{
+          	box-shadow:
+  0 0 20px black,
+  20px 15px 30px yellow,
+  -20px 15px 30px lime,
+  -20px -15px 30px blue,
+  20px -15px 30px red;
+          }
+          .div:hover{
+          }
+          #container{
+			width:2200px;
+			height:600px;
+			margin-top:-300px;
+			position: absolute;
+			padding:0 20px;
+			top:50%;
+          }
+          body{
+			height:100%;
+          	margin:0;
+          }
+          </style>
+     </head>
+     <body>
+     	<div id="container">
+	         <div id="div1" class="div div1"></div>
+	         <div id="div2" class="div div2"></div>
+	         <div id="div3" class="div div3"></div>
+	         <div id="div4" class="div div4"></div>
+	         <div id="div5" class="div div5"></div>
+	         <div style="clear:both;"></div>
+         </div>
+     </body>
+</html>
