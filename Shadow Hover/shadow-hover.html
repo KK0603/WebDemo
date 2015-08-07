@@ -11,6 +11,10 @@
          		.wrapper{
 					width: 100%;
 					height: 100%;
+					transition:all 0.2s;
+					-moz-transition:all 0.2s;
+					-o-transition:all 0.2s;
+					-ms-transition:all 0.2s;
 					-webkit-transition:all 0.2s;
 				}
 				.wrapper:hover{
@@ -28,11 +32,18 @@
 					height: 25rem;
 					margin: 20px;
 					float: left;
+					transition:all 0.2s;
+					-moz-transition:all 0.2s;
+					-o-transition:all 0.2s;
+					-ms-transition:all 0.2s;
 					-webkit-transition:all 0.2s;
-					
 				}
 				.item:hover{
+					transform:translateY(-5px);
 					-webkit-transform:translateY(-5px);
+					-moz-transform:translateY(-5px);
+					-o-transform:translateY(-5px);
+					-ms-transform:translateY(-5px);
 					box-shadow: 10px 10px 20px 0px #ddd;
 					cursor: pointer;
 				}
@@ -61,21 +72,38 @@
 				}
 				.btn-wrapper{
 					height: 10%;
-					padding: 8px;
 					float: right;
 				}
-				.btn{
+				.btn-wrapper span{
+					display: inline-block;
 					font-size: 0.8rem;
 					color: #999;
-					margin-left:8px;
+					margin:8px 8px 0 0;
 				}
 				.btn:hover{
 					color: #FFBB33;
 				}
-				.number{
-					font-size: 0.8rem;
-					color: #999;
-					margin-left: 5px;
+				.btn-wrapper .btn{
+					margin-right: 5px;
+				}
+				.round{
+					width: 10rem;
+					height: 10rem;
+					border-radius: 50%;
+					box-shadow: 0px 0px 0px 0px #ddd;
+				}
+				.pull-up{
+					margin-top:-50rem; 
+					opacity:0;
+					transition:all 0.6s linear 0.3s;
+					-moz-transition:all 0.6s;
+					-o-transition:all 0.6s;
+					-ms-transition:all 0.6s;
+					-webkit-transition:all 0.6s linear 0.3s;
+				}
+				.fade-down{
+					-webkit-transform:translateY(10rem);
+					opacity:0;
 				}
           	</style>
      </head>
@@ -122,7 +150,13 @@
 	          		</div>
 	          	</div>
           	</div>
+          	<script type="text/javascript" src="http://cdn.bootcss.com/zepto/1.1.6/zepto.min.js"></script>
           	<script type="text/javascript">
+          		$(".item").click(function(){
+          			var item = $(this);
+					$(".item").addClass("fade-down");
+      				item.removeClass("fade-down").addClass("pull-up");
+          		})
           	</script>
      </body>
 </html>
