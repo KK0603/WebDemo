@@ -32,7 +32,7 @@
                     margin: 20px;
                }
                .block{
-                    width: 60px;
+                    width: 70px;
                     height: 100%;
                     float: left;
                }
@@ -59,9 +59,9 @@
                     border-top: 10px solid #fff;
                     z-index: 999;
                     top: -33px;
-                    left: calc(50% - 5px);
-                    left: -webkit-calc(50% - 5px);
-                    left: -moz-calc(50% - 5px);
+                    left: calc(50% - 10px);
+                    left: -webkit-calc(50% - 10px);
+                    left: -moz-calc(50% - 10px);
                }
           </style>
      </head>
@@ -69,44 +69,79 @@
           <div class="title">Color Block</div>
           <div class="all-content">
                <div class="wrapper">
-                    <div class="block" data-color="#fff"></div> 
-                    <div class="block" data-color="#eee"></div>  
-                    <div class="block" data-color="#ddd"></div> 
-                    <div class="block" data-color="#ccc"></div> 
-                    <div class="block" data-color="#bbb"></div>  
-                    <div class="block" data-color="#aaa"></div>  
-                    <div class="block" data-color="#999"></div>
-                    <div class="block" data-color="#888"></div>    
-                    <div class="block" data-color="#777"></div>                    
-                    <div class="block" data-color="#666"></div>    
-                    <div class="block" data-color="#555"></div>
-                    <div class="block" data-color="#444"></div>    
-                    <div class="block" data-color="#333"></div>
-                    <div class="block" data-color="#222"></div>  
-                    <div class="block" data-color="#111"></div>
-                    <div class="block" data-color="#000"></div>  
+                    <div class="block start-block" data-color="#ffffff"></div> 
+                    <div class="block end-block" data-color="#000000"></div>  
               </div>
               <div class="wrapper">
-                    <div class="block" data-color="#fff"></div> 
-                    <div class="block" data-color="#eee"></div>  
-                    <div class="block" data-color="#ddd"></div> 
-                    <div class="block" data-color="#ccc"></div> 
-                    <div class="block" data-color="#bbb"></div>  
-                    <div class="block" data-color="#aaa"></div>  
-                    <div class="block" data-color="#999"></div>
-                    <div class="block" data-color="#888"></div>    
-                    <div class="block" data-color="#777"></div>                    
-                    <div class="block" data-color="#666"></div>    
-                    <div class="block" data-color="#555"></div>
-                    <div class="block" data-color="#444"></div>    
-                    <div class="block" data-color="#333"></div>
-                    <div class="block" data-color="#222"></div>  
-                    <div class="block" data-color="#FF9105"></div>
-                    <div class="block" data-color="#FF8A00"></div>  
+                    <div class="block start-block" data-color="#E2F4FB"></div>  
+                    <div class="block end-block" data-color="#0099CC"></div>  
+              </div>
+              <div class="wrapper">
+                    <div class="block start-block" data-color="#F5EAFA"></div>  
+                    <div class="block end-block" data-color="#9933CC"></div>  
+              </div>
+              <div class="wrapper">
+                    <div class="block start-block" data-color="#F0F8DB"></div>  
+                    <div class="block end-block" data-color="#669900"></div>  
+              </div>
+              <div class="wrapper">
+                    <div class="block start-block" data-color="#FFF6DF"></div>  
+                    <div class="block end-block" data-color="#FF8A00"></div>  
+              </div>
+              <div class="wrapper">
+                    <div class="block start-block" data-color="#FFE4E4"></div>  
+                    <div class="block end-block" data-color="#CC0000"></div>  
               </div>
               
           </div>
           <script type="text/javascript">
+               var blockCountPerLine = 16;
+               function getHexColor(value){
+                    var result = value.toString(16).toUpperCase();
+                    if(result.length < 2){
+                         result  = "0"+result;
+                    }
+                    return result;
+               }
+               function getColorArray(start,end,total){
+                    var count = total - 1; 
+                    result = [];
+                    var sr = Number("0x"+start.substring(1,3));
+                    var sg = Number("0x"+start.substring(3,5));
+                    var sb = Number("0x"+start.substring(5,7));
+                    var er = Number("0x"+end.substring(1,3));
+                    var eg = Number("0x"+end.substring(3,5));
+                    var eb = Number("0x"+end.substring(5,7));
+                    var ser = Math.floor((sr - er)/count);
+                    var seg = Math.floor((sg - eg)/count);
+                    var seb = Math.floor((sb - eb)/count); 
+                    for(var i = 1;i<count;i++){
+                         er = er + ser;
+                         eg = eg + seg;
+                         eb = eb + seb;
+                         var color = getHexColor(er) + getHexColor(eg) + getHexColor(eb);
+                         result.push(color);
+                    }
+                    return result;
+               }
+               var lines = document.querySelectorAll(".wrapper");
+               for(var i = 0, length = lines.length; i < length; i++){
+                    if(lines[i].children.length < 2){
+                         continue;
+                    }
+                    var start = lines[i].children[0];
+                    var end = lines[i].children[1];
+                    var colors = getColorArray(start.dataset.color,end.dataset.color,blockCountPerLine);
+                    var html = "";
+                    for(var j in colors){
+                         var color = colors[j];
+                         var template = '<div class="block" data-color="#'+ color +'"></div>';
+                         html = template + html;
+                    }
+                    html = start.outerHTML + html + end.outerHTML; 
+                    lines[i].innerHTML = html;
+               }
+               //set color display
                var allBlock = document.querySelectorAll(".block");
                for(var i = 0 , length = allBlock.length;i<length;i++){
                     var block = allBlock[i];
