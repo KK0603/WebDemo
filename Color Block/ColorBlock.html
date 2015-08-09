@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+     <head>
+          <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+          <title>Color Block</title>
+          <style type="text/css">
+               html{
+                    height: 100%;
+               }
+               body{
+                    padding: 0;
+                    margin: 0;
+                    height: 100%;
+                    background-color: #3C3C64;
+                    font-family: cursive;
+               }
+               .title{
+                    text-align: center;
+                    padding-top: 100px;
+                    margin-bottom: 50px;
+                    font-size: 50px;
+                    color:#fff;
+               }
+               .all-content{
+                    display: flex;
+                    flex-direction:column;
+                    justify-content:center;
+                    align-items:center;
+               }
+               .wrapper{
+                    height: 50px;
+                    margin: 20px;
+               }
+               .block{
+                    width: 60px;
+                    height: 100%;
+                    float: left;
+               }
+               .block:hover:before{
+                    content: attr(data-color);
+                    text-align: center;
+                    line-height: 30px;
+                    width: 200%;
+                    background-color: #fff;
+                    display: block;
+                    z-index: 1000;
+                    position: relative;
+                    top: -40px;
+                    height: 30px;
+                    left: -50%;
+               }
+               .block:hover:after{
+                    content: "";
+                    position: relative;
+                    height: 0px;
+                    width: 0px;
+                    border-left: 10px solid transparent;
+                    border-right: 10px solid transparent;
+                    border-top: 10px solid #fff;
+                    z-index: 999;
+                    top: -33px;
+                    left: calc(50% - 5px);
+                    left: -webkit-calc(50% - 5px);
+                    left: -moz-calc(50% - 5px);
+               }
+          </style>
+     </head>
+     <body>
+          <div class="title">Color Block</div>
+          <div class="all-content">
+               <div class="wrapper">
+                    <div class="block" data-color="#fff"></div> 
+                    <div class="block" data-color="#eee"></div>  
+                    <div class="block" data-color="#ddd"></div> 
+                    <div class="block" data-color="#ccc"></div> 
+                    <div class="block" data-color="#bbb"></div>  
+                    <div class="block" data-color="#aaa"></div>  
+                    <div class="block" data-color="#999"></div>
+                    <div class="block" data-color="#888"></div>    
+                    <div class="block" data-color="#777"></div>                    
+                    <div class="block" data-color="#666"></div>    
+                    <div class="block" data-color="#555"></div>
+                    <div class="block" data-color="#444"></div>    
+                    <div class="block" data-color="#333"></div>
+                    <div class="block" data-color="#222"></div>  
+                    <div class="block" data-color="#111"></div>
+                    <div class="block" data-color="#000"></div>  
+              </div>
+              <div class="wrapper">
+                    <div class="block" data-color="#fff"></div> 
+                    <div class="block" data-color="#eee"></div>  
+                    <div class="block" data-color="#ddd"></div> 
+                    <div class="block" data-color="#ccc"></div> 
+                    <div class="block" data-color="#bbb"></div>  
+                    <div class="block" data-color="#aaa"></div>  
+                    <div class="block" data-color="#999"></div>
+                    <div class="block" data-color="#888"></div>    
+                    <div class="block" data-color="#777"></div>                    
+                    <div class="block" data-color="#666"></div>    
+                    <div class="block" data-color="#555"></div>
+                    <div class="block" data-color="#444"></div>    
+                    <div class="block" data-color="#333"></div>
+                    <div class="block" data-color="#222"></div>  
+                    <div class="block" data-color="#FF9105"></div>
+                    <div class="block" data-color="#FF8A00"></div>  
+              </div>
+              
+          </div>
+          <script type="text/javascript">
+               var allBlock = document.querySelectorAll(".block");
+               for(var i = 0 , length = allBlock.length;i<length;i++){
+                    var block = allBlock[i];
+                    block.style.backgroundColor = block.dataset.color;
+               }
+          </script>
+     </body>
+</html>
