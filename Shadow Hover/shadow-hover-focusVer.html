@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+     <head>
+          	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+          	<title>Shadow Hover</title>
+          	<meta name="robots" content="all">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+			<meta name="apple-mobile-web-app-capable" content="yes">
+			<meta name="apple-mobile-web-app-status-bar-style" content="black">
+			<meta name="HandheldFriendly" content="true">
+			<meta name="format-detection" content="telephone=no">
+         	<style type="text/css">
+	         	html{
+	         		height: 100%;
+	         	}
+         		body{
+         			font-size: 16px;
+         			margin: 0;
+         			background-color: #fff;
+         			width: 5000px;
+         			height: 100%;
+         		}
+         		.wrapper{
+					width: 100%;
+					height: 100%;
+					transition:all 0.2s;
+					-moz-transition:all 0.2s;
+					-o-transition:all 0.2s;
+					-ms-transition:all 0.2s;
+					-webkit-transition:all 0.2s;
+				}
+				.wrapper:focus{
+					box-shadow: -10px 10px 20px 0px #ddd;
+				}
+				.item{
+					background-color: #fff;
+					border: 1px solid #ddd;
+					width: 20rem;
+					height: 25rem;
+					margin: 6rem 20px 0 20px;
+					float: left;
+					transition:all 0.2s;
+					-moz-transition:all 0.2s;
+					-o-transition:all 0.2s;
+					-ms-transition:all 0.2s;
+					-webkit-transition:all 0.2s;
+				}
+				.item:focus{
+					-webkit-transform:translateY(-5px);
+					box-shadow: 10px 10px 20px 0px #ddd;
+					cursor: pointer;
+					transform:translateY(-5px);
+					-webkit-transform:translateY(-5px);
+					-moz-transform:translateY(-5px);
+					-o-transform:translateY(-5px);
+					-ms-transform:translateY(-5px);
+					box-shadow: 10px 10px 20px 0px #ddd;
+					cursor: pointer;
+					outline: none;
+				}
+				.item.choose .title{
+					color:#ff4444;
+				}
+				img{
+					width: 100%;
+					height: 60%;
+				}
+				.title{
+					font-size: 1.2rem;
+					color:#33B5E5;
+					margin: 8px 8px 5px 8px;
+				}
+				.time{
+					font-size: 0.8rem;
+					color: #ddd;
+					margin: 5px 8px 8px 8px;
+				}
+				.content-wrapper{
+					height: 30%;
+					overflow: hidden;
+				}
+				.content{
+					font-size: 0.8rem;
+					margin: 8px;
+					color: #999;
+				}
+				.btn-wrapper{
+					float: right;
+				}
+				.btn-wrapper span{
+					display: inline-block;
+					font-size: 0.8rem;
+					color: #999;
+					margin:8px 8px 0 0;
+				}
+				.btn:hover{
+					color: #FFBB33;
+				}
+				.btn-wrapper .btn{
+					margin-right: 5px;
+				}
+          	</style>
+     </head>
+     <body>
+     	<div class="main-wrapper">
+          	<div class="item" tabindex="1">
+          		<div class="wrapper">
+	          		<img src="./clouds-trees-lake.jpg"/>
+	          		<div class="content-wrapper">
+	          			<div class="title">A Trip To Heaven</div>
+	          			<div class="time">2014-09-09 12:22</div>
+	          			<div class="content">This is a trip to heaven. The most beautiful place I've ever seen!</div>
+	          		</div>
+	          		<div class="btn-wrapper">
+	          			<span class="btn">Like</span><span class="number">0</span>
+	          			<span class="btn">DisLike</span><span class="number">0</span>
+	          		</div>
+	          	</div>
+          	</div>
+          	<div class="item" tabindex="-1">
+          		<div class="wrapper">
+	          		<img src="./sailboat.jpg"/>
+	          		<div class="content-wrapper">
+	          			<div class="title">A Trip To Heaven</div>
+	          			<div class="time">2014-09-09 12:22</div>
+	          			<div class="content">This is a trip to heaven. The most beautiful place I've ever seen!</div>
+	          		</div>
+	          		<div class="btn-wrapper">
+	          			<span class="btn">Like</span><span class="number">0</span>
+	          			<span class="btn">DisLike</span><span class="number">0</span>
+	          		</div>
+          		</div>
+          	</div>
+          	<div class="item"  tabindex="-1">
+          		<div class="wrapper">
+	          		<img src="./tumblr.jpg"/>
+	          		<div class="content-wrapper">
+	          			<div class="title">A Trip To Heaven</div>
+	          			<div class="time">2014-09-09 12:22</div>
+	          			<div class="content">This is a trip to heaven. The most beautiful place I've ever seen!</div>
+	          		</div>
+	          		<div class="btn-wrapper">
+	          			<span class="btn">Like</span><span class="number">0</span>
+	          			<span class="btn">DisLike</span><span class="number">0</span>
+	          		</div>
+	          	</div>
+          	</div>
+          	<div class="item" tabindex="-1">
+          		<div class="wrapper">
+	          		<img src="./clouds-trees-lake.jpg"/>
+	          		<div class="content-wrapper">
+	          			<div class="title">A Trip To Heaven</div>
+	          			<div class="time">2014-09-09 12:22</div>
+	          			<div class="content">This is a trip to heaven. The most beautiful place I've ever seen!</div>
+	          		</div>
+	          		<div class="btn-wrapper">
+	          			<span class="btn">Like</span><span class="number">0</span>
+	          			<span class="btn">DisLike</span><span class="number">0</span>
+	          		</div>
+	          	</div>
+          	</div>
+          	<div class="item" tabindex="-1">
+          		<div class="wrapper">
+	          		<img src="./sailboat.jpg"/>
+	          		<div class="content-wrapper">
+	          			<div class="title">A Trip To Heaven</div>
+	          			<div class="time">2014-09-09 12:22</div>
+	          			<div class="content">This is a trip to heaven. The most beautiful place I've ever seen!</div>
+	          		</div>
+	          		<div class="btn-wrapper">
+	          			<span class="btn">Like</span><span class="number">0</span>
+	          			<span class="btn">DisLike</span><span class="number">0</span>
+	          		</div>
+          		</div>
+          	</div>
+          	<div class="item" tabindex="-1">
+          		<div class="wrapper">
+	          		<img src="./tumblr.jpg"/>
+	          		<div class="content-wrapper">
+	          			<div class="title">A Trip To Heaven</div>
+	          			<div class="time">2014-09-09 12:22</div>
+	          			<div class="content">This is a trip to heaven. The most beautiful place I've ever seen!</div>
+	          		</div>
+	          		<div class="btn-wrapper">
+	          			<span class="btn">Like</span><span class="number">0</span>
+	          			<span class="btn">DisLike</span><span class="number">0</span>
+	          		</div>
+	          	</div>
+          	</div>
+          	<div class="item" tabindex="-1">
+          		<div class="wrapper">
+	          		<img src="./clouds-trees-lake.jpg"/>
+	          		<div class="content-wrapper">
+	          			<div class="title">A Trip To Heaven</div>
+	          			<div class="time">2014-09-09 12:22</div>
+	          			<div class="content">This is a trip to heaven. The most beautiful place I've ever seen!</div>
+	          		</div>
+	          		<div class="btn-wrapper">
+	          			<span class="btn">Like</span><span class="number">0</span>
+	          			<span class="btn">DisLike</span><span class="number">0</span>
+	          		</div>
+	          	</div>
+          	</div>
+          	<div class="item" tabindex="-1">
+          		<div class="wrapper">
+	          		<img src="./sailboat.jpg"/>
+	          		<div class="content-wrapper">
+	          			<div class="title">A Trip To Heaven</div>
+	          			<div class="time">2014-09-09 12:22</div>
+	          			<div class="content">This is a trip to heaven. The most beautiful place I've ever seen!</div>
+	          		</div>
+	          		<div class="btn-wrapper">
+	          			<span class="btn">Like</span><span class="number">0</span>
+	          			<span class="btn">DisLike</span><span class="number">0</span>
+	          		</div>
+          		</div>
+          	</div>
+          	<div class="item" tabindex="-1">
+          		<div class="wrapper">
+	          		<img src="./tumblr.jpg"/>
+	          		<div class="content-wrapper">
+	          			<div class="title">A Trip To Heaven</div>
+	          			<div class="time">2014-09-09 12:22</div>
+	          			<div class="content">This is a trip to heaven. The most beautiful place I've ever seen!</div>
+	          		</div>
+	          		<div class="btn-wrapper">
+	          			<span class="btn">Like</span><span class="number">0</span>
+	          			<span class="btn">DisLike</span><span class="number">0</span>
+	          		</div>
+	          	</div>
+          	</div>
+          	<div class="item" tabindex="-1">
+          		<div class="wrapper">
+	          		<img src="./clouds-trees-lake.jpg"/>
+	          		<div class="content-wrapper">
+	          			<div class="title">A Trip To Heaven</div>
+	          			<div class="time">2014-09-09 12:22</div>
+	          			<div class="content">This is a trip to heaven. The most beautiful place I've ever seen!</div>
+	          		</div>
+	          		<div class="btn-wrapper">
+	          			<span class="btn">Like</span><span class="number">0</span>
+	          			<span class="btn">DisLike</span><span class="number">0</span>
+	          		</div>
+	          	</div>
+          	</div>
+          	<div class="item" tabindex="-1">
+          		<div class="wrapper">
+	          		<img src="./sailboat.jpg"/>
+	          		<div class="content-wrapper">
+	          			<div class="title">A Trip To Heaven</div>
+	          			<div class="time">2014-09-09 12:22</div>
+	          			<div class="content">This is a trip to heaven. The most beautiful place I've ever seen!</div>
+	          		</div>
+	          		<div class="btn-wrapper">
+	          			<span class="btn">Like</span><span class="number">0</span>
+	          			<span class="btn">DisLike</span><span class="number">0</span>
+	          		</div>
+          		</div>
+          	</div>
+          	<div class="item" tabindex="-1">
+          		<div class="wrapper">
+	          		<img src="./tumblr.jpg"/>
+	          		<div class="content-wrapper">
+	          			<div class="title">A Trip To Heaven</div>
+	          			<div class="time">2014-09-09 12:22</div>
+	          			<div class="content">This is a trip to heaven. The most beautiful place I've ever seen!</div>
+	          		</div>
+	          		<div class="btn-wrapper">
+	          			<span class="btn">Like</span><span class="number">0</span>
+	          			<span class="btn">DisLike</span><span class="number">0</span>
+	          		</div>
+	          	</div>
+          	</div>
+          	<div style="clear:both;"></div>
+        </div>
+          	<script type="text/javascript" src="http://cdn.bootcss.com/zepto/1.1.6/zepto.min.js"></script>
+          	<script type="text/javascript">
+          		$(document).keydown(function(e){
+          			var curElem = document.activeElement;
+          			if(e.keyCode == 13){
+          				$(curElem).toggleClass("choose");
+          			}else if(e.keyCode == 38 || e.keyCode == 37){
+          				$(curElem).prev(".item").focus();
+          			}else if(e.keyCode == 39 || e.keyCode == 40){
+          				$(curElem).next(".item").focus();
+          			}
+          		});
+          	</script>
+     </body>
+</html>
