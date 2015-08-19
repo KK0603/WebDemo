@@ -1,0 +1,58 @@
+html{
+	height: 100%;
+	width: 100%;
+	margin: 0;
+}
+body{
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	overflow: hidden;
+}
+.page{
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	-webkit-transition: top 1s ease-in-out;
+}
+.before{
+	display: block;
+	top:-100%;
+}
+.after{
+	display: block;
+	top:100%;
+}
+.hidden{
+	display: none;
+}
+#title_page{
+	background-color: orange;
+}
+#content_page{
+	background-color: white;
+}
+#main_page{
+	display: flex;
+}
+#main_page div{
+	height: 100%;
+	-webkit-transition: width 0.3s ease-out;
+}
+#sidebar{
+	background-color: blue;
+	width: 300px;
+}
+#subsidebar{
+	background-color: green;
+	width: 0px;
+}
+#content_wrapper{
+	background-color: yellow;
+	flex:1;
+}
+#subsidebar.active{
+	width: 300px;
+};
