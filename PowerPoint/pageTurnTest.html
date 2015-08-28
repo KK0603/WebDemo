@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+        <title>AjaxTest</title>
+        <style type="text/css">
+        	html{
+        		height: 100%;
+        		margin: 0;
+        		padding: 0;
+        	}
+        	body{
+        		height: 100%;
+        		margin: 0;
+        		padding:0;
+        		overflow: hidden;
+        	}
+        	.wrapper{
+        		margin: 0;
+        		padding: 0;
+        		overflow: hidden;
+        		position: absolute;
+        		top:0;
+        		-webkit-transition:all 1s ease-out;
+        	}
+        	.block{
+        	}
+        </style>
+    </head>
+    <body>
+    	<div id="main" class="wrapper">
+		    <div id="div1" class="block"></div>
+		    <div id="div2" class="block"></div>
+		    <div id="div3" class="block"></div>
+		    <div id="div4" class="block"></div>
+		    <div id="div5" class="block"></div>
+		    <div id="div6" class="block"></div>
+		    <div id="div7" class="block"></div>
+		    <div id="div8" class="block"></div>
+		    <div id="div9" class="block"></div>
+		    <div id="div10" class="block"></div>
+		    <div id="div11" class="block"></div>
+		    <div id="div12" class="block"></div>
+		    <div id="div13" class="block"></div>
+		    <div id="div14" class="block"></div>
+	    </div>
+        <script type="text/javascript">
+          	var contentCount = {
+				chapterCount:4,
+				C1:4,
+				C2:3,
+				C3:5,
+				C4:2,
+				0:0,
+				1:4,
+				2:7,
+				3:12,
+				4:14
+			}
+			var _directioin = {
+				UP : 1,
+				DOWN : -1
+			}
+			var _currentPage = "1.1";
+			function getMove(from,to){
+				var result = {
+					count : 0,
+					direction : _directioin.UP
+				}
+				if(compareIndex(from,to)==0){
+					return result;
+				}else if(compareIndex(from,to)>0){
+					result.direction = _directioin.DOWN;
+					var tmp = from;
+					from = to;
+					to = tmp;
+				}
+				var aa = from.split(".");
+				var bb = to.split(".");
+				if((+aa[0])>contentCount.chapterCount || (+aa[1])>contentCount["C"+aa[0]] || (+bb[0])>contentCount.chapterCount || (+bb[1])>contentCount["C"+bb[0]]){
+					return result;
+				}
+				var fromC = contentCount[(aa[0]-1)] + (+aa[1]);
+				var toC = contentCount[(bb[0]-1)] + (+bb[1]);
+				result.count = toC - fromC;
+				return result;
+			}
+			function getBlockCount(index){
+				var result = 0;
+				var aa = index.split(".");
+				if((+aa[0])>contentCount.chapterCount || (+aa[1])>contentCount["C"+aa[0]]){
+					return result;
+				}
+				result = contentCount[(aa[0]-1)] + (+aa[1]);
+				return result;
+			}
+			function compareIndex(a,b){
+				var aa = a.split(".");
+				var bb = b.split(".");
+				if(aa.length != bb.length){
+					return "umComparable";
+				}
+				for(var i = 0, l = aa.length;i<l;i++){
+					if(aa[i] == bb[i]){
+						continue;
+					}else{
+						return (aa[i]>bb[i]?1:-1);
+					}
+				}
+				return 0;
+			}
+			console.log(JSON.stringify(getMove("4.2","1.12")));
+			for(var i = 1;i<=14;i++){
+				var color = "#" + (i<3?("0"+i):i*4) +(i<5?("0"+i):i*2) + (i<2?("0"+i):i*5);
+				document.getElementById("div"+i).style.backgroundColor = color;
+				document.getElementById("div"+i).style.height = document.documentElement.clientHeight+"px";
+				document.getElementById("div"+i).style.width =document.documentElement.clientWidth+"px";
+			}
+			window.onresize = function(){
+				for(var i = 1;i<=14;i++){
+					document.getElementById("div"+i).style.height = document.documentElement.clientHeight+"px";
+					document.getElementById("div"+i).style.width = document.documentElement.clientWidth+"px";
+				}
+				navigateToPage(_currentPage);
+			}
+			function navigateToPage(index){
+				var param = getMove(_currentPage,index);
+				var count = getBlockCount(index)-1;
+				var height = document.documentElement.clientHeight;
+				document.getElementById("main").style.top = -(count * height)+"px";
+				_currentPage = index;
+			}
+			setTimeout(navigateToPage,2000,"3.3");
+			setTimeout(navigateToPage,4000,"1.3");
+			setTimeout(navigateToPage,6000,"4.2");
+        </script>
+    </body>
+</html>
+
