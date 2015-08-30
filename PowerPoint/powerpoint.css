@@ -17,14 +17,6 @@ body{
 	left: 0;
 	-webkit-transition: top 1s ease-in-out;
 }
-.before{
-	display: block;
-	top:-100%;
-}
-.after{
-	display: block;
-	top:100%;
-}
 .hidden{
 	display: none;
 }
@@ -37,22 +29,41 @@ body{
 #main_page{
 	display: flex;
 }
-#main_page div{
+#sidebar,#subsidebar{
 	height: 100%;
-	-webkit-transition: width 0.3s ease-out;
+	-webkit-transition: all 0.3s ease-out;
 }
 #sidebar{
 	background-color: blue;
-	width: 300px;
+	width: 250px;
+	z-index: 1000;
 }
 #subsidebar{
 	background-color: green;
-	width: 0px;
+	width: 0;
+	z-index: 100;
+}
+#subsidebar .index{
+	display: none;
 }
 #content_wrapper{
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	position: relative;
+	top:0;
+	-webkit-transition:all 0.4s ease-out;
 	background-color: yellow;
+	z-index: 10;
 	flex:1;
 }
 #subsidebar.active{
-	width: 300px;
-};
+	width: 250px;
+}
+#subsidebar.active .index{
+	display: block;
+}
+.content_page{
+	background-color: #666666;
+	color: #fff;
+}
