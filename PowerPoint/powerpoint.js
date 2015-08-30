@@ -1,10 +1,6 @@
 var page = (function(){
 	var output = {};
 	var pageSettings = {
-		directioin : {
-			UP : 1,
-			DOWN : -1
-		},
 		contentCount : {
 			chapterCount:4,
 			C1:4,
@@ -16,7 +12,8 @@ var page = (function(){
 			2:7,
 			3:12,
 			4:14
-		}
+		},
+		chapters : [],
 	};
 	var pageState = {
 		currentPage :"1.1"
@@ -141,11 +138,54 @@ var page = (function(){
 			subsidebar.classList.remove("active");
 		});
 	}
+	var setChapters = function(){
+		var indexTmp = "";
+		function Chapter(){
+			this.CN=0;
+			this.totalPN=0;
+			this.totalIndex=0;
+			this.startPN=0;
+			this.endPN=0;
+			this.startIndex=0;
+			this.endIndex=0;
+			this.indexPN=[];
+		}
+		var chapter = new Chapter();
+		var isNewChapter = true;
+		for(var i = 0, l = allcontent.length; i < l; i++){
+			var currentContent = allcontent[i];
+			var index = currentContent.dataset.index;
+			currentContent.dataset.pn = (i+1);
+			if(indexTmp && index.split(".")[0] != chapter.CN){
+				pageSettings.chapters.push(chapter);
+				chapter = new Chapter();
+				isNewChapter = true;
+			}
+			var ia = index.split(".");
+			chapter.CN = ia[0];
+			chapter.totalPN += 1;
+			if(ia[1] != indexTmp.split(".")[1] || isNewChapter){
+				chapter.totalIndex += 1;	
+				chapter.indexPN.push((i+1));
+			}
+			if(isNewChapter){
+				chapter.startPN = (i+1);
+				chapter.startIndex = ia[1];
+			}
+			chapter.endPN = (i+1);
+			chapter.endIndex = ia[1];
+			indexTmp = index;
+			isNewChapter = false;
+			if(i == l-1){
+				pageSettings.chapters.push(chapter);
+			}
+		}
+	}
 	var initialize = function(){
+		setChapters();
 		setHeight();
 		SetEvents();
 	}
-	output.navigateToPage = navigateToPage;
 	initialize();
 	return output;
 })();
