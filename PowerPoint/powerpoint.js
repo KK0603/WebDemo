@@ -1,74 +1,98 @@
 var page = (function(){
 	var output = {};
 	var pageSettings = {
-		contentCount : {
-			chapterCount:4,
-			C1:4,
-			C2:3,
-			C3:5,
-			C4:2,
-			0:0,
-			1:4,
-			2:7,
-			3:12,
-			4:14
-		},
 		chapters : [],
+		totalPage : 0,
 	};
 	var pageState = {
-		currentPage :"1.1"
+		currentPage :"TT",
+		currentIndex :"",
+		currentChapter:"",
+		subSidebarActive:false,
+		subSidebarChapter:"",
 	}
 	var allcontent = document.querySelectorAll(".content_page");
 	var allChapterDiv = document.querySelectorAll(".chapter");
 	var sidebar = document.querySelector("#sidebar");
 	var subsidebar = document.querySelector("#subsidebar");
 	var contentWrapper = document.getElementById("content_wrapper");
-	var getNextIndex = function(index){
-		var result = index;
-		if(!validateIndex(index)){
-			return result;
-		}
-		var aa = index.split(".");
-		if(aa[1] == pageSettings.contentCount["C"+aa[0]] && aa[0]<pageSettings.contentCount.chapterCount){
-			result = (+aa[0]+1)+".1";
-		}else if(aa[1] == pageSettings.contentCount["C"+aa[0]] && aa[0] == pageSettings.contentCount.chapterCount){
-			result = index;
-		}else{
-			result = aa[0] + "." + (+aa[1]+1);
-		}
-		return result;
+	var mainWrapper = document.getElementById("main_wrapper");
+	var titlePage = document.getElementById("title_page");
+	var indexPage = document.getElementById("index_page");
+	var thankPage = document.getElementById("thank_page");
+	function Chapter(){
+		this.CN=0;
+		this.totalPN=0;
+		this.totalIndex=0;
+		this.startPN=0;
+		this.endPN=0;
+		this.startIndex=0;
+		this.endIndex=0;
+		this.indexPN=[];
 	}
-	var getPrevIndex = function(index){
-		var result = index;
-		if(!validateIndex(index)){
-			return result;
-		}
-		var aa = index.split(".");
-		if(aa[1] == "1" && aa[0]>1){
-			result = (+aa[0]-1)+"." + pageSettings.contentCount["C"+(+aa[0]-1)];
-		}else if(aa[1] == "1" && aa[0] == "1"){
-			result = index;
-		}else{
-			result = aa[0] + "." + (+aa[1]-1);
-		}
-		return result;
+	var getTotalPage = function(){
+		var l = pageSettings.chapters.length;
+		return pageSettings.chapters[l-1].endPN;
 	}
-	var validateIndex = function(index){
-		var result = false;
-		var aa = index.split(".");
-		if(aa.length<2 || (+aa[0])>pageSettings.contentCount.chapterCount || (+aa[1])>pageSettings.contentCount["C"+aa[0]]){
+	var getIndexPage = function(index){
+		if(!validateIndex(index)){
+			return pageState.currentPage;
+		}
+		var ia = index.split(".");
+		var chapter = pageSettings.chapters[(+ia[0]-1)];
+		var page = chapter.indexPN[(+ia[1]-chapter.startIndex)];
+		return page;
+	};
+	var getPageIndex = function(page){
+		var result = "1.1";
+		if(page == "TT" || page == "TC" || page=="TY"){
 			return result;
+		}
+		return document.querySelector('.content_page[data-pn="'+ page +'"]').dataset.index;
+	}
+	var validateIndex =function(index){
+		if(!index){
+			return false;
+		}
+		var ia = index.split(".");
+		if(ia.length != 2 || (+ia[0])>pageSettings.chapters.length){
+			return false;
+		}
+		var chapter = pageSettings.chapters[(+ia[0]-1)];
+		if((+ia[1])< chapter.startIndex || (+ia[1])>chapter.endIndex){
+			return false;
 		}
 		return true;
-	}
-	var getBlockCount = function(index){
-		var result = 0;
-		if(!validateIndex(index)){
-			return result;
+	};
+	var getNextPage = function(page){
+		var result = 1;
+		switch(page){
+			case "TT":
+				return "TC";
+			case "TY":
+				return "TY";
+			case "TC":
+				return 1;
+			case pageSettings.totalPage:
+				return "TY";
+			default:
+				return (+page + 1);
 		}
-		var aa = index.split(".");
-		result = pageSettings.contentCount[(aa[0]-1)] + (+aa[1]);
-		return result;
+	}
+	var getPrevPage = function(page){
+		var result = 1;
+		switch(page){
+			case "TT":
+				return "TT";
+			case "TY":
+				return pageSettings.totalPage;
+			case "TC":
+				return "TT";
+			case 1:
+				return "TC";
+			default:
+				return (+page - 1);
+		}
 	}
 	var compareIndex = function(a,b){
 		var aa = a.split(".");
@@ -85,22 +109,46 @@ var page = (function(){
 		}
 		return 0;
 	}
-	var navigateToPage = function(index){
-		if(!validateIndex(index)){
-			return;
-		}
-		var count = getBlockCount(index)-1;
+	var navigateToPage = function(page){
 		var height = document.documentElement.clientHeight;
-		contentWrapper.style.top = -(count * height)+"px";
-		pageState.currentPage = index;
+		if(page == "TT"){
+			mainWrapper.style.top = -(0 * height)+"px";
+		}else if(page == "TC"){
+			mainWrapper.style.top = -(1 * height)+"px";
+		}else if(page == "TY"){
+			mainWrapper.style.top = -(3 * height)+"px";
+		}else if(page<1 || page > pageSettings.totalPage){
+			return;
+		}else{
+			mainWrapper.style.top = -(2 * height)+"px";
+			contentWrapper.style.top = -((page-1) * height)+"px";
+		}
+		pageState.currentPage = page;
+		pageState.currentIndex = getPageIndex(page);
+		pageState.currentChapter = pageState.currentIndex.substring(0,1);
+		var allSidebarItem = document.querySelectorAll(".sidebar_item");
+		for(var i = 0,l=allSidebarItem.length;i<l;i++){
+			allSidebarItem[i].classList.remove("active");
+		}
+		document.querySelector('#sidebar .sidebar_item[data-chapter="'+ pageState.currentChapter +'"]').classList.add("active");
 	}
 	var setHeight = function(){
 		var totalHeight = 0;
+		var height = document.documentElement.clientHeight;
+		var width = document.documentElement.clientWidth;
 		for(var i = 0,l = allcontent.length;i<l;i++){
-			allcontent[i].style.height = document.documentElement.clientHeight+"px";
-			allcontent[i].style.width =document.documentElement.clientWidth-250+"px";
-			totalHeight += document.documentElement.clientHeight;
+			allcontent[i].style.height = height+"px";
+			allcontent[i].style.width = width-250+"px";
+			totalHeight += height;
 		}
+		sidebar.style.height = height+"px";
+		subsidebar.style.height = height+"px";
+		titlePage.style.height = height+"px";
+		indexPage.style.height = height+"px";
+		thankPage.style.height = height+"px";
+		titlePage.style.width = width+"px";
+		indexPage.style.width = width+"px";
+		thankPage.style.width = width+"px";
 		contentWrapper.style.height = totalHeight + "px";
 	}
 	var SetEvents = function(){
@@ -110,46 +158,57 @@ var page = (function(){
 		}
 		document.addEventListener("keydown",function(event){
 			if(event.keyCode == 38){
-				navigateToPage(getPrevIndex(pageState.currentPage));
+				navigateToPage(getPrevPage(pageState.currentPage));
 			}else if(event.keyCode == 40){
-				navigateToPage(getNextIndex(pageState.currentPage));
+				navigateToPage(getNextPage(pageState.currentPage));
 			}
 		});
 		sidebar.addEventListener("click",function(event){
-			var chapter = event.target.dataset.chapter;
-			if(!chapter){
+			var cp = event.target.dataset.chapter;
+			if(!cp){
 				return;
 			}
-			var indexCount = pageSettings.contentCount["C"+chapter];
-			var html = "";
-			for(var i=0;i<indexCount;i++){
-				var index = [chapter,'.',(i+1)].join("");
-				html+=['<div class="index" data-index="',index,'">',index,'</div>'].join("");
+			if(cp == pageState.subSidebarChapter){
+				subsidebar.classList.toggle("active");
+				pageState.subSidebarActive = !pageState.subSidebarActive;
+				return;
 			}
-			subsidebar.innerHTML = html;
-			subsidebar.classList.add("active");
+			subsidebar.classList.remove("active");
+			var chapter = pageSettings.chapters[+cp-1];
+			var html = "";
+			for(var i=0;i<chapter.totalIndex;i++){
+				var index = [chapter.CN,'.',(+i+(+chapter.startIndex))].join("");
+				var active = "";
+				if(index == pageState.currentIndex){
+					active = "active";
+				}
+				html+=['<div class="index sidebar_item ', active ,'" data-index="',index,'">',index,'</div>'].join("");
+			}
+			function render(){
+				subsidebar.classList.add("active");
+				pageState.subSidebarActive = true;
+				pageState.subSidebarChapter = cp;
+				subsidebar.innerHTML = html;
+			}
+			if(pageState.subSidebarActive){
+				setTimeout(render,400);
+			}else{
+				render();
+			}
 		});
 		subsidebar.addEventListener("click",function(event){
 			var index = event.target.dataset.index;
 			if(!index){
 				return;
 			}
-			navigateToPage(index);
+			navigateToPage(getIndexPage(index));
 			subsidebar.classList.remove("active");
+			pageState.subSidebarActive = false;
+			pageState.subSidebarChapter = "";
 		});
 	}
 	var setChapters = function(){
 		var indexTmp = "";
-		function Chapter(){
-			this.CN=0;
-			this.totalPN=0;
-			this.totalIndex=0;
-			this.startPN=0;
-			this.endPN=0;
-			this.startIndex=0;
-			this.endIndex=0;
-			this.indexPN=[];
-		}
 		var chapter = new Chapter();
 		var isNewChapter = true;
 		for(var i = 0, l = allcontent.length; i < l; i++){
@@ -157,6 +216,7 @@ var page = (function(){
 			var index = currentContent.dataset.index;
 			currentContent.dataset.pn = (i+1);
 			if(indexTmp && index.split(".")[0] != chapter.CN){
+				chapter.indexPN.push(i);
 				pageSettings.chapters.push(chapter);
 				chapter = new Chapter();
 				isNewChapter = true;
@@ -180,6 +240,8 @@ var page = (function(){
 				pageSettings.chapters.push(chapter);
 			}
 		}
+		var l = pageSettings.chapters.length;
+		pageSettings.totalPage = pageSettings.chapters[l-1].endPN;
 	}
 	var initialize = function(){
 		setChapters();
