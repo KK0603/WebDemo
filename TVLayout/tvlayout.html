@@ -1,0 +1,128 @@
+<html>
+<head>
+	<meta charset="UTF-8"></meta>
+	<title>display test</title>
+	<style type="text/css">
+		html,body{
+			height: 100%;
+			width: 100%;
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+			background-color: #333;
+			color:#fff;
+		}
+		body{
+			display: flex;
+		}
+		.main{
+			margin: 3rem 5rem;
+			display: flex;
+			flex-direction:column;
+			position: absolute;
+		}
+		.wrapper{
+			display: flex;
+		}
+		.status-wrapper{
+			height: 4rem;
+			margin-bottom: 2rem;
+		}
+		.title-wrapper{
+			height: 4rem;
+			margin-bottom: 2rem;			
+			align-items: baseline;
+		}
+		.content-wrapper{
+			flex:1;
+			align-items: center;
+			position: relative;
+			left: 0;
+			-webkit-transition:all 0.3s ease-in-out;
+		}
+		.title{
+			font-size: 2rem;
+			margin-right: 1rem;
+		}
+		.subtitle{
+			font-size: 1rem;
+		}
+		.content{
+			height: 30rem;
+			width: 22rem;
+			margin-right: 2rem;
+			background-color: #0c34df;
+			-webkit-transition:all 0.3s ease-in-out;
+			outline: none;
+		}
+		.content.active{
+			-webkit-transform:scale(1.2);
+		}
+		.content:focus{
+			outline: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="main">
+		<div class="wrapper status-wrapper"></div>
+		<div class="wrapper title-wrapper">
+			<span class="title">Title</span>
+			<span class="subtitle">Subtitle</span>
+		</div>
+		<div class="wrapper content-wrapper">
+			<div class="content" data-index="1"></div>
+			<div class="content" data-index="2"></div>
+			<div class="content" data-index="3"></div>
+			<div class="content" data-index="4"></div>
+			<div class="content" data-index="5"></div>
+			<div class="content" data-index="6"></div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+var contents = document.querySelectorAll(".content");
+var wrapper = document.querySelector(".content-wrapper");
+var current = 0;
+var width = parseFloat(contents[0].offsetWidth)+32;
+contents[0].classList.add("active");
+document.addEventListener("keydown",function(e){
+	if(e.keyCode == 37){
+		moveLeft();
+	}else if(e.keyCode == 39){
+		moveRight();
+	}
+});
+document.addEventListener("click",function(e){
+	contents[current].classList.remove("active");
+	if(e.target.dataset["index"]){
+		current = e.target.dataset["index"] - 1;
+		contents[current].classList.add("active");
+		moveWrapper();	
+	}
+});
+function moveLeft(){
+	if(current!=0){
+		contents[current].classList.remove("active");
+		current--;
+		contents[current].classList.add("active");
+		moveWrapper();
+	}
+}
+function moveRight(){
+	if(current != contents.length-1){
+		contents[current].classList.remove("active");
+		current++;
+		contents[current].classList.add("active");
+		moveWrapper();
+	}
+}
+function moveWrapper(){
+	if(current > 2){
+		wrapper.style.left = -(width * (current -2)) + "px";
+	}else{
+		wrapper.style.left = "0px";
+	}
+}
+</script>
+</html>
